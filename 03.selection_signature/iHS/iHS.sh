@@ -58,7 +58,7 @@ mkdir iHS.progress
 for ((i=1; i<=$chr; i++));
 do 
 # calculate map distance
-$vcftools --gzvcf $vcf --recode --recode-INFO-all --chr ${i} -out ./iHS.progress/${vcf}.chr${i}
+$vcftools --gzvcf $vcf --recode --recode-INFO-all --chr ${i} --out ./iHS.progress/${vcf}.chr${i}
 $vcftools --vcf ./iHS.progress/${vcf}.chr${i}.recode.vcf --plink --out ./iHS.progress/chr${i}.MT          
 awk 'BEGIN{OFS=" "} {print $1,".",$4,$4}' ./iHS.progress/chr${i}.MT.map > ./iHS.progress/chr${i}.MT.map.distance
 done 
@@ -71,7 +71,7 @@ $selscan --ihs --vcf ${vcf}.chr${i}.recode.vcf --map chr${i}.MT.map.distance --t
 # add win and norm 
 $norm --ihs --files  Chr${i}.ihs.out  --bp-win --winsize $win
 # add win and step
-python ../iHS_Win_step.py --file Chr${i}.ihs.out.100bins.norm --chr $i --window $win --step $step
+python ../iHS_Win_step.py --file Chr${i}.ihs.out.100bins.norm --chromosome $i --window $win --step $step
 done
 
 cat {1.."$chr"}.iHS > ../${output}.iHS
