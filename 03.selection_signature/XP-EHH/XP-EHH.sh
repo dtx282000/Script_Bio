@@ -87,7 +87,7 @@ $selscan --xpehh --vcf tag.chr${k}.recode.vcf --vcf-ref ref.chr${k}.recode.vcf -
 # norm
 $norm --xpehh --files  chr${k}.ref_tag.xpehh.out --bp-win --winsize $win 
 # add win and step
-python ../XPEHH_Win_step.py --file chr${k}.ref_tag.xpehh.out.norm --chr $k --window $win --step $step
+python ../XPEHH_Win_step.py --file chr${k}.ref_tag.xpehh.out.norm --chromosome $k --window $win --step $step
 done
 cat {1.."$chr"}.XPEHH > ../${output}.XPEHH
 }
